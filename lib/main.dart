@@ -15,7 +15,9 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
 
-  static const List<Widget> routes = [ Home(), Settings() ];
+  bool lightOrDark = true;
+
+  static const List<Widget> widgets = [ Home(), Settings() ];
 
   int currentIndex = 0;
   void changeIndex(index) {
@@ -28,15 +30,21 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: lightOrDark ? ThemeData.light() : ThemeData.dark(),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("My USF GDSC App"),
+          title: const Center(child: Text('My USF GDSC App')),
         ),
-        body: routes[currentIndex],
+        body: widgets[currentIndex],
         floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.thumb_up),
+          child: const Icon(
+            Icons.color_lens,
+            size: 32,
+          ),
           onPressed: () => {
-            
+            setState(() {
+              lightOrDark = !lightOrDark;
+            },)
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -44,13 +52,15 @@ class _MainAppState extends State<MainApp> {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: "Home",
+              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
-              label: "Settings",
+              label: 'Settings',
             ),
           ],
+          selectedFontSize: 0,
+          iconSize: 32,
           currentIndex: currentIndex,
           onTap: (index) => changeIndex(index),
         ),
