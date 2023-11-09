@@ -16,8 +16,7 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
 
   bool lightOrDark = true;
-
-  static const List<Widget> widgets = [ Home(), Settings() ];
+  final pageController = PageController();
 
   int currentIndex = 0;
   void changeIndex(index) {
@@ -35,7 +34,14 @@ class _MainAppState extends State<MainApp> {
         appBar: AppBar(
           title: const Center(child: Text('My USF GDSC App')),
         ),
-        body: widgets[currentIndex],
+        body: PageView(
+          controller: pageController,
+          onPageChanged: (index) => changeIndex(index),
+          children: const [
+            Home(),
+            Settings(),
+          ]
+        ),
         floatingActionButton: FloatingActionButton(
           child: const Icon(
             Icons.color_lens,
@@ -62,7 +68,10 @@ class _MainAppState extends State<MainApp> {
           selectedFontSize: 0,
           iconSize: 32,
           currentIndex: currentIndex,
-          onTap: (index) => changeIndex(index),
+          onTap: (index) {
+            changeIndex(index);
+            pageController.jumpToPage(index);
+          },
         ),
       ),
     );
