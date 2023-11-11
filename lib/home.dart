@@ -9,7 +9,7 @@ class Home extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
-          child: Text('Home'),
+          child: Text('Home', style: TextStyle( fontSize: 48, ), ),
         ),
       ),
     );

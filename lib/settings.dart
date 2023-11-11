@@ -9,7 +9,7 @@ class Settings extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
-          child: Text('Settings'),
+          child: Text('Settings', style: TextStyle( fontSize: 48, ), ),
         ),
       ),
     );
