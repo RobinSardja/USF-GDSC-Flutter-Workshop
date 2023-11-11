@@ -1,3 +1,3 @@
-# gdsc
+# USF GDSC Flutter Workshop App
 
-A new Flutter project.
+I love USF GDSC!!!!!
